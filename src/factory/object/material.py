@@ -1,13 +1,12 @@
 from typing import Dict, Union
 import string
 
-
 from attributes.permit import Permit
 
 
 class Material:
     def __init__(self,
-                 id: int,
+                 id: string,
                  name: string = "",
                  inventory: float = 0,
                  inventory_cap: float = 0,
@@ -119,5 +118,4 @@ class Material:
 
         _result = amount * self.price
         return {_result, _earn}
-
 
