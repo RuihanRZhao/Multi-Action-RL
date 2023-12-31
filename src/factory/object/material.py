@@ -1,22 +1,20 @@
-from typing import Dict, Union
 import string
-
-
-from attributes.permit import Permit
+from typing import Dict, Union
+from .attributes.permit import Permit
 
 
 class Material:
     def __init__(self,
-                 id: int,
+                 uid: string,
                  name: string = "",
                  inventory: float = 0,
                  inventory_cap: float = 0,
                  pur_permit: bool = False,
                  sal_permit: bool = False,
-                 price_source: list | None = None):
+                 price_source: list = None):
 
         self.raw_data = {
-            "ID": id,
+            "ID": uid,
             "name": name,
             "inventory": inventory,
             "inventory capability": inventory_cap,
@@ -33,12 +31,8 @@ class Material:
         self.initialize()
         self.get_price(0)
 
-    def __repr__(self) -> Dict[string, Union[string, Permit]]:
-        return {
-            "Name":    self.name,
-            "Inventory": f"{self.inventory}/{self.inventory_capability}",
-            "Permit":  self.permit
-        }
+    def __repr__(self) -> string:
+        return f"\nName: {self.name}\n\tInventory: {self.inventory}/{self.inventory_capability}\n\tPermit: {self.permit}\n"
 
     def initialize(self):
         self.ID = self.raw_data["ID"]
@@ -56,7 +50,7 @@ class Material:
             raise ValueError(f"Material {self.name}:{self.ID} cannot be reset.")
 
     def get_price(self, date: int = 0) -> float:
-        result = self.raw_data["price_check-dict"][date]
+        result = self.raw_data["price_check_dict"][date]
         if result is not None:
             return result
         else:
@@ -119,5 +113,3 @@ class Material:
 
         _result = amount * self.price
         return {_result, _earn}
-
-
