@@ -36,13 +36,13 @@ class Factory:
 
 
             for line in instances:
-
-                print(line)
+                # print(line)
                 element_additional_list_info = []
                 if extra_infos is not None:
                     for extra_info in extra_infos:
                         if extra_info[0] == line[0]:
                             element_additional_list_info.append(extra_info)
+                    # print(element_additional_list_info)
 
                 if instance_type is not None:
                     # test usage print
@@ -50,6 +50,7 @@ class Factory:
                     temp_list.append(instance_type(*line, element_additional_list_info))
                 else:
                     temp_list.append(line)
+
             return temp_list
 
         self.material_list = create_list(Material, material, create_list(None, price))
