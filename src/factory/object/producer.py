@@ -6,26 +6,25 @@ from .material import Material
 
 class Producer:
     def __init__(self,
-                 name: string,
                  id: string,
                  produce_min: float,
                  produce_max: float,
-                 lowest_cost: float = 0,
-                 unit_consumption: float = 0,
-                 material_list: list = None
+                 lowest_cost: float,
+                 unit_consumption: float,
+                 material_list: list
                  ):
         self.ID = id
-        self.name = name
         self.produce_range = (produce_min, produce_max)
-        print(material_list)
+
         self.material_list: list = [ i[1:] for i in material_list ]
         self.lowest_period_cost = lowest_cost
         self.unit_consumption = unit_consumption
 
     def __repr__(self):
         material_exchange = ""
-        for element, cost in self.produce_range:
+        for element, cost in self.material_list:
             material_exchange += "\t\t"
+            cost = int(cost)
             if cost > 0:
                 material_exchange += f"Produce {cost} of {element}"
             elif cost < 0:
@@ -35,7 +34,7 @@ class Producer:
 
             material_exchange += "\n"
 
-        return f"\nName: {self.name} [{self.ID}]\n" \
+        return f"\nName: [{self.ID}]\n" \
                f"\tProduce range: [{self.produce_range[0]},{self.produce_range[1]}]\n" \
                f"\tLowest cost: {self.lowest_period_cost}  | Unit consumption: {self.unit_consumption}\n\"" \
                f"\tMaterial exchange: \n" \
