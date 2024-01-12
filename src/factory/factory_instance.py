@@ -34,9 +34,7 @@ class Factory:
             temp_list = []
             header, instances = load_data(location)
 
-
             for line in instances:
-                # print(line)
                 element_additional_list_info = []
                 if extra_infos is not None:
                     for extra_info in extra_infos:
@@ -46,7 +44,7 @@ class Factory:
 
                 if instance_type is not None:
                     # test usage print
-                    # print(*line, element_additional_list_info)
+                    #      print(*line, element_additional_list_info)
                     temp_list.append(instance_type(*line, element_additional_list_info))
                 else:
                     temp_list.append(line)
